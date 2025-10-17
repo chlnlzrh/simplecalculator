@@ -28,7 +28,9 @@ export const CalculatorDisplay: React.FC<CalculatorDisplayProps> = ({
   return (
     <div
       className={cn(
-        'flex flex-col items-end justify-end p-4 bg-gray-50 dark:bg-gray-800 rounded-lg min-h-[80px]',
+        'flex flex-col items-end justify-end p-4 bg-white dark:bg-gray-900 rounded-lg min-h-[80px]',
+        'border-2 border-gray-300 dark:border-gray-600', // Enhanced border for contrast
+        'shadow-inner', // Inner shadow for depth
         className
       )}
       role="textbox"
@@ -37,14 +39,14 @@ export const CalculatorDisplay: React.FC<CalculatorDisplayProps> = ({
     >
       {/* Previous value and operation */}
       {(previousValue !== null || operation) && (
-        <div className="text-xs font-normal text-gray-500 dark:text-gray-400 mb-1">
+        <div className="text-xs font-normal text-gray-700 dark:text-gray-300 mb-1">
           {previousValue !== null && previousValue !== undefined && formatDisplayValue(previousValue)}
           {operationSymbol && ` ${operationSymbol}`}
         </div>
       )}
       
       {/* Current value */}
-      <div className="text-2xl font-bold text-gray-900 dark:text-white text-right break-all">
+      <div className="text-2xl font-bold text-black dark:text-white text-right break-all">
         {displayValue}
       </div>
     </div>

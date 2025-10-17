@@ -72,8 +72,15 @@ export const CalculatorButton: React.FC<CalculatorButtonProps> = ({
         'text-xs font-normal transition-all duration-150',
         'hover:scale-105 active:scale-95',
         'focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+        'border-2 border-transparent', // Ensure consistent border
         button.className,
         isActive && 'ring-2 ring-blue-500 bg-blue-100 dark:bg-blue-900',
+        // Enhanced contrast for different button types
+        button.type === 'operation' && 'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600',
+        button.type === 'equals' && 'bg-green-600 text-white hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600',
+        button.type === 'function' && 'bg-gray-600 text-white hover:bg-gray-700 dark:bg-gray-400 dark:text-gray-900 dark:hover:bg-gray-300',
+        button.type === 'memory' && 'bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600',
+        button.type === 'number' && 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600',
         className
       )}
       aria-label={generateAriaLabel(button.label, button.type)}
