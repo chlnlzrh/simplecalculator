@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn, formatNumber } from '@/lib/utils';
-import { Memory, Plus, Minus, RotateCcw } from 'lucide-react';
+import { HardDrive, Plus, Minus, RotateCcw } from 'lucide-react';
 
 interface CalculatorMemoryProps {
   memory: number;
@@ -26,7 +26,7 @@ export const CalculatorMemory: React.FC<CalculatorMemoryProps> = ({
 }) => {
   const memoryButtons = [
     { id: 'mc', label: 'MC', operation: 'MC' as const, icon: RotateCcw, disabled: !memoryActive },
-    { id: 'mr', label: 'MR', operation: 'MR' as const, icon: Memory, disabled: !memoryActive },
+    { id: 'mr', label: 'MR', operation: 'MR' as const, icon: HardDrive, disabled: !memoryActive },
     { id: 'm+', label: 'M+', operation: 'M+' as const, icon: Plus, disabled: false },
     { id: 'm-', label: 'M-', operation: 'M-' as const, icon: Minus, disabled: false },
   ];
@@ -35,7 +35,7 @@ export const CalculatorMemory: React.FC<CalculatorMemoryProps> = ({
     <Card className={cn('w-full', className)}>
       <CardHeader className="pb-2">
         <CardTitle className="text-xs font-bold flex items-center gap-2">
-          <Memory className="h-4 w-4" />
+          <HardDrive className="h-4 w-4" />
           Memory
         </CardTitle>
       </CardHeader>

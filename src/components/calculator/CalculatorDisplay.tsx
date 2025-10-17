@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { formatDisplayValue } from '@/lib/calculator';
 
 interface CalculatorDisplayProps {
   value: string;
@@ -21,16 +22,7 @@ export const CalculatorDisplay: React.FC<CalculatorDisplayProps> = ({
   previousValue,
   className,
 }) => {
-  const formatDisplayValue = (val: string): string => {
-    // Handle very large numbers with scientific notation
-    const num = parseFloat(val);
-    if (Math.abs(num) >= 1e15 || (Math.abs(num) < 1e-10 && num !== 0)) {
-      return num.toExponential(6);
-    }
-    return val;
-  };
-
-  const displayValue = formatDisplayValue(value);
+  const displayValue = value;
   const operationSymbol = operation ? getOperationSymbol(operation) : '';
 
   return (
@@ -46,7 +38,7 @@ export const CalculatorDisplay: React.FC<CalculatorDisplayProps> = ({
       {/* Previous value and operation */}
       {(previousValue !== null || operation) && (
         <div className="text-xs font-normal text-gray-500 dark:text-gray-400 mb-1">
-          {previousValue !== null && formatDisplayValue(previousValue.toString())}
+          {previousValue !== null && previousValue !== undefined && formatDisplayValue(previousValue)}
           {operationSymbol && ` ${operationSymbol}`}
         </div>
       )}

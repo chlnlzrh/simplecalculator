@@ -207,7 +207,7 @@ export const Calculator: React.FC = () => {
   const handleUseHistoryEntry = useCallback((entry: CalculationEntry) => {
     setState(prevState => ({
       ...prevState,
-      display: formatDisplayValue(entry.result.toString()),
+      display: formatDisplayValue(entry.result),
       waitingForOperand: true,
     }));
   }, []);

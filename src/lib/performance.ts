@@ -3,6 +3,7 @@
  * @ai-gen: model=v4.0, date=2024-12-19
  */
 
+import React from 'react';
 import { debounce, throttle } from './utils';
 
 /**
@@ -11,6 +12,10 @@ import { debounce, throttle } from './utils';
 export class PerformanceMonitor {
   private static instance: PerformanceMonitor;
   private metrics: Map<string, number> = new Map();
+
+  setMetric(key: string, value: number): void {
+    this.metrics.set(key, value);
+  }
   private observers: PerformanceObserver[] = [];
 
   private constructor() {
@@ -123,7 +128,9 @@ export class OptimizedCalculator {
     // Cache management
     if (this.cache.size >= this.maxCacheSize) {
       const firstKey = this.cache.keys().next().value;
-      this.cache.delete(firstKey);
+      if (firstKey !== undefined) {
+        this.cache.delete(firstKey);
+      }
     }
     
     this.cache.set(expression, result);
@@ -174,7 +181,7 @@ export const monitorBundleSize = (): void => {
   if (script) {
     const size = script.getAttribute('data-size');
     if (size) {
-      PerformanceMonitor.getInstance().metrics.set('bundleSize', parseInt(size));
+      PerformanceMonitor.getInstance().setMetric('bundleSize', parseInt(size));
     }
   }
 };
@@ -188,8 +195,8 @@ export const monitorMemoryUsage = (): void => {
   // Check if memory API is available
   if ('memory' in performance) {
     const memory = (performance as any).memory;
-    PerformanceMonitor.getInstance().metrics.set('memoryUsed', memory.usedJSHeapSize);
-    PerformanceMonitor.getInstance().metrics.set('memoryTotal', memory.totalJSHeapSize);
+    PerformanceMonitor.getInstance().setMetric('memoryUsed', memory.usedJSHeapSize);
+    PerformanceMonitor.getInstance().setMetric('memoryTotal', memory.totalJSHeapSize);
   }
 };
 
